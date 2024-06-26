@@ -1,0 +1,7 @@
+{
+  "name": "maisacademico-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

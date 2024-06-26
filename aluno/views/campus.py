@@ -1,14 +1,19 @@
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from aluno.models import Campus
 from aluno.forms import CampusForm
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from rest_framework import viewsets
 
-class CreateCampusView (SuccessMessageMixin, CreateView):
+from aluno.serializers import CampusSerializer
+from setup.libs import LoginRequired
+
+class CreateCampusView (LoginRequired, SuccessMessageMixin, CreateView):
   model = Campus
   form_class = CampusForm
   template_name = 'aluno/create/create_campus.html'
-  success_url = reverse_lazy('index')
+  context_object_name = 'object_list'
+  success_url = reverse_lazy('listCampus')
   
 class ListCampusView (ListView):
   model = Campus
@@ -22,3 +27,18 @@ class ListCampusView (ListView):
     if nome:
       queryset = queryset.filter(nome__icontains=nome)
     return queryset
+
+class DeleteCampusView (LoginRequired, DeleteView):
+  model = Campus
+  template_name = 'aluno/delete/delete_campus.html'
+  success_url = reverse_lazy('listCampus')
+
+class UpdateCampusView (LoginRequired, UpdateView):
+  model = Campus
+  form_class = CampusForm
+  template_name = 'aluno/update/update_campus.html'
+  success_url = reverse_lazy('listCampus')
+
+class CampusAPI(viewsets.ModelViewSet):
+  queryset = Campus.objects.all()
+  serializer_class = CampusSerializer

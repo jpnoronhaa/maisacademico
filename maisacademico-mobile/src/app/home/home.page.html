@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      MaisAcadêmico Mobile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">MaisAcadêmico Mobile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Lista de Campus</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let campus of campi">
+        <ion-label>{{ campus.nome }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Lista de Cursos</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let curso of cursos">
+        <ion-label>{{ curso.nome }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Lista de Aluno</ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let aluno of alunos">
+        <ion-label>{{ aluno.nomeCompleto }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
